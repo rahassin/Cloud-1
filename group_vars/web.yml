@@ -1,4 +1,0 @@
-mariadb_root_password: supersecretroot
-mariadb_database: wordpress
-mariadb_user: wp_user
-mariadb_password: wp_password
