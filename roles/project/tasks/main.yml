@@ -1,0 +1,39 @@
+---
+- name: Créer le dossier du projet
+  file:
+    path: /opt/cloud-1
+    state: directory
+
+- name: Copier les fichiers du projet Docker
+  copy:
+    src: "{{ item }}"
+    dest: "/opt/cloud-1/{{ item }}"
+  with_items:
+    - docker-compose.yml
+    - .env
+
+# - name: Copier les dossiers de services
+#   copy:
+#     src: wordpress/
+#     dest: /opt/cloud-1/wordpress/
+#   delegate_to: localhost
+
+- name: Copier wordpress/
+  copy:
+    src: files/wordpress/
+    dest: /opt/cloud-1/wordpress/
+
+- name: Copier nginx/
+  copy:
+    src: files/nginx/
+    dest: /opt/cloud-1/nginx/
+
+- name: Copier mariadb/
+  copy:
+    src: files/mariadb/
+    dest: /opt/cloud-1/mariadb/
+    
+- name: Lancer les conteneurs
+  shell: docker compose up -d
+  args:
+    chdir: /opt/cloud-1

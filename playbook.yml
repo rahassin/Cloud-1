@@ -1,5 +1,8 @@
 ---
-- hosts: web
+- name: Déploiement Cloud-1
+  hosts: web
   become: true
+
   roles:
-    - mariadb
+    - docker
+    - project
