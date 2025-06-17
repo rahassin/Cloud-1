@@ -1,8 +1,0 @@
----
-- name: Déploiement Cloud-1
-  hosts: web
-  become: true
-
-  roles:
-    - docker
-    - project
